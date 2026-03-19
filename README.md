@@ -1,47 +1,49 @@
 # Recursive Geometric Framework for Fundamental Physical Constants
 
-Reproducibility code for the paper *Geometric Conjecture for the Origin of Fundamental Physical Constants from a Discrete Recursive Geometric Framework*.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![SageMath 9.0+](https://img.shields.io/badge/SageMath-9.0+-green.svg)](https://www.sagemath.org/)
 
-## Environment Compatibility
-- **Python 3.8+**: V1, V2, V3, V4, V6 (requires numpy/scipy)
-- **SageMath 9.0+**: All scripts (V1–V6), **required for V5** (polytope combinatorics)
+Reproducibility code for the paper:  
+**"Geometric Conjecture for the Origin of Fundamental Physical Constants from Recursive Discrete Spacetime"**  
+*Jingbo Zhang (2026)*
 
-&gt; **Note**: V5 uses SageMath native `polytopes` module; run in SageMath only.
+&gt; **Abstract**: This repository contains the numerical verification scripts for a geometric framework where fundamental constants (α⁻¹ ≈ 137.036, mₚ/mₑ ≈ 1836, neutrino hierarchy) emerge from the recursive topology of discrete spacetime, rooted in the binary icosahedral group 2I and the 120-cell/600-cell duality.
 
-## Script List (Appendix G)
+---
 
-| Script | Description | Key Output |
-|--------|-------------|------------|
-| `V1_spectral_recursion.py` | Heat kernel self-similarity & spectral recursion | $\text{Spec}(\Delta_{N+1}) = \phi^2\text{Spec}(\Delta_N) \sqcup \phi^{-2}\text{Spec}(\Delta_N)$ |
-| `V2_entropy_convergence.py` | Information loss rate $\delta_N$ & critical depth | $N_c = 7$, $\delta_7 &lt; 10^{-6}$ |
-| `V3_mass_ratio.py` | Proton-electron mass ratio geometric factors | $m_p/m_e \approx 1835.95$ |
-| `V4_fine_structure.py` | Inverse fine-structure constant $\alpha^{-1}$ series | $\alpha^{-1} = 137.0359991(7)$ |
-| `V5_edge_count.sage` | 120-cell/600-cell Poincaré duality & edge ratio | $E_{120}/E_{600} = 5/3$ |
-| `V6_neutrino_hierarchy.py` | **Normal hierarchy prediction** (rigid) vs **mass scale** (phenomenological) | Mass ratio $1:\phi:\phi^2$; Example values $0.01, 0.0162, 0.0262$ eV |
+## 📋 Script Overview (Appendix G)
 
-## Important Note on V6 (Neutrino Hierarchy)
+| Script | Environment | Core Verification | Key Output |
+|--------|-------------|-------------------|------------|
+| **V1_spectral_recursion.py** | Python 3.8+ | Heat kernel self-similarity | Spec(Δₙ₊₁) = φ²Spec(Δₙ) ⊔ φ⁻²Spec(Δₙ) |
+| **V2_entropy_convergence.py** | Python 3.8+ | Information loss rate δₙ | Critical depth **N_c = 7** |
+| **V3_mass_ratio.py** | Python 3.8+ | Geometric factor decomposition | mₚ/mₑ ≈ 1835.95 (deviation 10⁻⁴) |
+| **V4_fine_structure.py** | Python 3.8+ | α⁻¹ series expansion | **137.0359991(7)** (deviation 10⁻⁸) |
+| **V5_edge_count.py** | Python / Sage | 120-cell/600-cell duality | Edge ratio **5/3** → Complexity **10/7** |
+| **V6_neutrino_hierarchy.py** | Python 3.8+ | Neutrino hierarchy from 2I | Normal hierarchy (rigid) vs mass scale (phenomenological) |
 
-**Critical distinction**: V6 outputs must be interpreted carefully:
+---
 
-1. **Geometrically Rigid Predictions** (independent of any free parameters):
-   - Normal hierarchy: $m_1 &lt; m_2 &lt; m_3$
-   - Mass ratio: $1 : \phi : \phi^2$ (where $\phi = (1+\sqrt{5})/2$)
+## ⚠️ Critical Note on V6 (Neutrino Masses)
 
-2. **Phenomenological Input** (example only, not from first principles):
-   - Absolute mass scale ($0.01$ eV in the example) is chosen to satisfy cosmological bound $\sum m_i &lt; 0.12$ eV
-   - Changing this scale does **not** affect the mass ratio prediction
+**V6 requires careful interpretation.** Two distinct levels of predictions:
 
-3. **Current Limitation**:
-   - Mass-squared differences differ from experimental values by factors of 2-6 (see output)
-   - Precise matching requires PMNS matrix implementation (future work)
+### 1. Geometrically Rigid (Parameter-Free)
+- **Normal hierarchy**: m₁ &lt; m₂ &lt; m₃
+- **Mass ratio**: 1 : φ : φ² (φ = (1+√5)/2)
+- **Falsifiability**: If JUNO/DUNE observes **inverted hierarchy** (m₃ &lt; m₁ &lt; m₂), framework is invalidated
 
-4. **Falsifiability**:
-   - If JUNO (2028) or DUNE confirms **inverted hierarchy** ($m_3 &lt; m_1 &lt; m_2$), the framework is invalidated regardless of absolute mass values
+### 2. Phenomenological Example (Illustrative)
+- **Absolute scale** (0.01 eV) is *ad hoc* (satisfies Σmᵢ &lt; 0.12 eV)
+- **Mass-squared differences** differ from experiment by factors of 2–6 (expected, lacks PMNS mixing)
+- These demonstrate cosmological compatibility but are **not first-principles predictions**
 
-## Usage
+---
 
-### Python (V1–V4, V6)
+## 🚀 Quick Start
+
+### Pure Python (V1–V4, V6)
 ```bash
 pip install numpy scipy
 python V1_spectral_recursion.py
-python V6_neutrino_hierarchy.py  # Note: Check output distinction between rigid ratio vs example scale
+python V6_neutrino_hierarchy.py  # Check: mass ratio 1:1.618:2.618
