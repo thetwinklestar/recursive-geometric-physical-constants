@@ -1,49 +1,53 @@
-# Recursive Geometric Framework for Fundamental Physical Constants
+# Geometric Conjecture for the Origin of Fundamental Physical Constants
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![SageMath 9.0+](https://img.shields.io/badge/SageMath-9.0+-green.svg)](https://www.sagemath.org/)
+Python/SageMath code for reproducing numerical results in:
 
-Reproducibility code for the paper:  
 **"Geometric Conjecture for the Origin of Fundamental Physical Constants from Recursive Discrete Spacetime"**  
-*Jingbo Zhang (2026)*
-
-&gt; **Abstract**: This repository contains the numerical verification scripts for a geometric framework where fundamental constants (α⁻¹ ≈ 137.036, mₚ/mₑ ≈ 1836, neutrino hierarchy) emerge from the recursive topology of discrete spacetime, rooted in the binary icosahedral group 2I and the 120-cell/600-cell duality.
+Jingbo Zhang (2026)
 
 ---
 
-## 📋 Script Overview (Appendix G)
+## Core Mathematical Identities
 
-| Script | Environment | Core Verification | Key Output |
-|--------|-------------|-------------------|------------|
-| **V1_spectral_recursion.py** | Python 3.8+ | Heat kernel self-similarity | Spec(Δₙ₊₁) = φ²Spec(Δₙ) ⊔ φ⁻²Spec(Δₙ) |
-| **V2_entropy_convergence.py** | Python 3.8+ | Information loss rate δₙ | Critical depth **N_c = 7** |
-| **V3_mass_ratio.py** | Python 3.8+ | Geometric factor decomposition | mₚ/mₑ ≈ 1835.95 (deviation 10⁻⁴) |
-| **V4_fine_structure.py** | Python 3.8+ | α⁻¹ series expansion | **137.0359991(7)** (deviation 10⁻⁸) |
-| **V5_edge_count.py** | Python / Sage | 120-cell/600-cell duality | Edge ratio **5/3** → Complexity **10/7** |
-| **V6_neutrino_hierarchy.py** | Python 3.8+ | Neutrino hierarchy from 2I | Normal hierarchy (rigid) vs mass scale (phenomenological) |
+The framework is built on two fundamental geometric relations:
 
----
+1. **Golden ratio**: $\phi = \frac{1+\sqrt{5}}{2}$
 
-## ⚠️ Critical Note on V6 (Neutrino Masses)
-
-**V6 requires careful interpretation.** Two distinct levels of predictions:
-
-### 1. Geometrically Rigid (Parameter-Free)
-- **Normal hierarchy**: m₁ &lt; m₂ &lt; m₃
-- **Mass ratio**: 1 : φ : φ² (φ = (1+√5)/2)
-- **Falsifiability**: If JUNO/DUNE observes **inverted hierarchy** (m₃ &lt; m₁ &lt; m₂), framework is invalidated
-
-### 2. Phenomenological Example (Illustrative)
-- **Absolute scale** (0.01 eV) is *ad hoc* (satisfies Σmᵢ &lt; 0.12 eV)
-- **Mass-squared differences** differ from experiment by factors of 2–6 (expected, lacks PMNS mixing)
-- These demonstrate cosmological compatibility but are **not first-principles predictions**
+2. **Geometric $\pi$ from 120-cell**: 
+   $$\pi = 10 \cdot \arcsin\left(\frac{1}{2\phi}\right)$$
+   
+   This identity derives from the half-central angle of pentagonal faces in the regular 120-cell $\{5,3,3\}$.
 
 ---
 
-## 🚀 Quick Start
+## Main Results
 
-### Pure Python (V1–V4, V6)
+| Constant | Theoretical Value | CODATA 2022 | Relative Deviation |
+|----------|------------------|-------------|-------------------|
+| $\alpha^{-1}$ | **137.035999168** | 137.035999084 | $6.11 \times 10^{-10}$ |
+| $m_p/m_e$ | **1835.948298** | 1836.152673 | $1.11 \times 10^{-4}$ |
+
+**Key distinction for neutrino masses**:
+- **Geometrically rigid predictions**: Mass ratio $m_1:m_2:m_3 = 1:\phi:\phi^2$ and normal hierarchy ($m_1 &lt; m_2 &lt; m_3$)
+- **Phenomenological input**: Absolute mass scale $\sim 0.01$ eV (chosen to satisfy cosmological bounds $\sum m_i &lt; 0.12$ eV)
+
+---
+
+## Verification Scripts
+
+All scripts are independent with no cross-dependencies.
+
+| Script | Function | Appendix |
+|--------|----------|----------|
+| `V1_spectral_recursion.py` | Heat kernel self-similarity; spectral recursion verification | A |
+| `V2_entropy_convergence.py` | Information loss rate $\delta_N$; entropy gradient convergence | B |
+| `V3_mass_ratio.py` | Proton-electron mass ratio geometric factors | C |
+| `V4_fine_structure.py` | $\alpha^{-1}$ series expansion; Minakshisundaram-Pleijel coefficients | D |
+| `V5_edge_count.py` | 120-cell/600-cell combinatorics; Poincaré duality | E |
+| `V6_neutrino_hierarchy.py` | Neutrino mass scaling; $\phi$-hierarchy prediction | F |
+
+### Usage
+
 ```bash
-pip install numpy scipy
-python V1_spectral_recursion.py
-python V6_neutrino_hierarchy.py  # Check: mass ratio 1:1.618:2.618
+python V4_fine_structure.py    # Reproduces α⁻¹ = 137.035999168
+python V3_mass_ratio.py        # Reproduces m_p/m_e = 1835.948298
